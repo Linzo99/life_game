@@ -1,8 +1,8 @@
 let interval;
 
 function Grid() {
-  const [size, setSize] = React.useState(25);
-  const [speed, setSpeed] = React.useState(7);
+  const [size, setSize] = React.useState(35);
+  const [speed, setSpeed] = React.useState(20);
   const [grid, setGrid] = React.useState(null);
 
   const init = () => {
@@ -18,8 +18,8 @@ function Grid() {
   const start = () => (interval = setInterval(update, 2000 / speed));
   const pause = () => clearInterval(interval);
   const changeSpeed = (val) => {
-    setSpeed(val);
     pause();
+    setSpeed(parseInt(val));
     start();
   };
   const restart = () => {
@@ -28,23 +28,23 @@ function Grid() {
   };
 
   React.useEffect(() => {
-    clearInterval(interval);
-    init();
+    restart();
+    return () => clearInterval(interval);
   }, [size]);
 
   if (!grid) return null;
 
   return (
-    <div>
+    <div className="flex flex-col p-1">
       <Settings
         setSize={setSize}
         start={start}
         pause={pause}
         update={update}
         restart={restart}
-        setSpeed={changeSpeed}
+        changeSpeed={changeSpeed}
       />
-      <div className="my-2 border border-gray-800 p-2">
+      <div className="flex justify-center items-center my-2 border border-gray-800 p-2">
         <div className="flex flex-col">
           {grid &&
             grid.map((row, i) => (
@@ -64,16 +64,17 @@ function GridItem({ val }) {
   const color = val == 1 ? "bg-green-600" : "";
   return (
     <span
-      className={`h-4 w-4 ${color} border-[.2px] border-gray-400/80 m-0 p-0`}
+      className={`w-2 h-2 md:h-4 md:w-4 ${color} border-[.2px] border-gray-400/80 m-0 p-0`}
     ></span>
   );
 }
 
-function Settings({ start, pause, restart, setSize, setSpeed }) {
+function Settings({ start, pause, restart, setSize, changeSpeed }) {
   return (
     <div className="flex justify-between items-center w-full">
       <select
-        onChange={({ target }) => setSize(parseInt(target.value))}
+        defaultValue="35"
+        onChange={({ target }) => setSize(target.value)}
         className="bg-transparent border border-gray-500 bg-white text-black dark:text-white dark:bg-transparent rounded-sm p-1"
       >
         <option value="25">25x25</option>
@@ -123,11 +124,11 @@ function Settings({ start, pause, restart, setSize, setSpeed }) {
         </svg>
       </div>
       <input
-        onChange={({ target }) => setSpeed(target.value)}
-        className="w-16"
+        onChange={({ target }) => changeSpeed(target.value)}
+        className="w-16 accent-blue-600"
         type="range"
         min="1"
-        max="7"
+        max="20"
       />
     </div>
   );
