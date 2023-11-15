@@ -4,12 +4,6 @@
 
 This provides an overview of the implementation solution for Conway's Game of Life, from TL221 Challenge. The Game of Life is a cellular automaton devised by the mathematician John Conway, and it's known for its simple yet fascinating rules that govern the evolution of the system.
 
-## Implementation Details
-
-### Language Used
-
-For this Challenge we used **React** to implement the solution.
-
 <table>
   <tbody>
     <tr>
@@ -18,6 +12,12 @@ For this Challenge we used **React** to implement the solution.
     </tr>
   </tbody>
 </table>
+
+## Implementation Details
+
+### Language Used
+
+For this Challenge we used **React** to implement the solution.
 
 ### Code Structure
 
