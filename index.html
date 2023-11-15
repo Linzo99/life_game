@@ -1,0 +1,41 @@
+<html lang="en">
+  <head>
+    <title>Jeu de la Vie</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://unpkg.com/babel-standalone@6/babel.js"
+    ></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div
+      class="w-screen h-screen overflow-hidden flex flex-col items-center justify-center bg-white dark:bg-zinc-900"
+    >
+      <header>
+        <h1 class="text-4xl font-bold mb-8 text-gray-900 dark:text-gray-100">
+          Conway's Game of Life
+        </h1>
+      </header>
+      <main>
+        <div id="grid"></div>
+      </main>
+      <footer class="px-6 py-4 border-t dark:border-zinc-800">
+        <p class="text-sm text-zinc-500 dark:text-zinc-400">
+          © 2023 Conway's Game of Life by Linzo(@sallalioune28).
+        </p>
+      </footer>
+    </div>
+    <script type="text/javascript" src="utils.js"></script>
+    <script type="text/babel" src="grid.js"></script>
+  </body>
+</html>
