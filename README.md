@@ -45,7 +45,7 @@ The following are the basic rules that govern the evolution of the system:
 
 To run the Game of Life implementation:
 
-1. Visit this [link](https://life-game-156wek3f9-linzo99.vercel.app/)
+1. Visit this [link](https://life-game-156wek3f9-linzo99.vercel.app/)  OR
 2. Clone this repository and run locally
 
 ```bash
