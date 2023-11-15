@@ -3,18 +3,6 @@
     <title>Jeu de la Vie</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script
-      crossorigin
-      src="https://unpkg.com/react@18/umd/react.development.js"
-    ></script>
-    <script
-      crossorigin
-      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="https://unpkg.com/babel-standalone@6/babel.js"
-    ></script>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
@@ -29,7 +17,75 @@
         </h1>
       </header>
       <main>
-        <div id="grid"></div>
+        <div
+          class="flex flex-col justify-between items-center w-full space-y-2"
+        >
+          <div class="w-full flex justify-between items-center">
+            <select
+              id="size"
+              class="bg-transparent border border-gray-500 bg-white text-black dark:text-white dark:bg-transparent rounded-sm p-1"
+            >
+              <option value="25">25x25</option>
+              <option value="30">30x30</option>
+              <option selected value="35">35x35</option>
+              <option value="40">40x40</option>
+            </select>
+            <div class="flex items-center space-x-2">
+              <svg
+                onclick="GameGrid.start()"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="w-6 h-6 text-green-600 cursor-pointer"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm14.024-.983a1.125 1.125 0 010 1.966l-5.603 3.113A1.125 1.125 0 019 15.113V8.887c0-.857.921-1.4 1.671-.983l5.603 3.113z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <svg
+                onclick="GameGrid.pause()"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="w-6 h-6 text-red-600 cursor-pointer"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zM9 8.25a.75.75 0 00-.75.75v6c0 .414.336.75.75.75h.75a.75.75 0 00.75-.75V9a.75.75 0 00-.75-.75H9zm5.25 0a.75.75 0 00-.75.75v6c0 .414.336.75.75.75H15a.75.75 0 00.75-.75V9a.75.75 0 00-.75-.75h-.75z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <svg
+                onclick="GameGrid.restart()"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="w-6 h-6 text-yellow-400 cursor-pointer"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M4.755 10.059a7.5 7.5 0 0112.548-3.364l1.903 1.903h-3.183a.75.75 0 100 1.5h4.992a.75.75 0 00.75-.75V4.356a.75.75 0 00-1.5 0v3.18l-1.9-1.9A9 9 0 003.306 9.67a.75.75 0 101.45.388zm15.408 3.352a.75.75 0 00-.919.53 7.5 7.5 0 01-12.548 3.364l-1.902-1.903h3.183a.75.75 0 000-1.5H2.984a.75.75 0 00-.75.75v4.992a.75.75 0 001.5 0v-3.18l1.9 1.9a9 9 0 0015.059-4.035.75.75 0 00-.53-.918z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+            <input
+              id="speed"
+              class="w-16 accent-blue-600"
+              type="range"
+              value="20"
+              min="1"
+              max="20"
+            />
+          </div>
+          <div
+            className="flex justify-center items-center my-2 border border-gray-800 p-2"
+          >
+            <div id="grid" className="flex flex-col"></div>
+          </div>
+        </div>
       </main>
       <footer class="px-6 py-4 border-t dark:border-zinc-800">
         <p class="text-center text-sm text-zinc-500 dark:text-zinc-400">
@@ -38,10 +94,18 @@
       </footer>
     </div>
     <script type="text/javascript" src="scripts/utils.js"></script>
-    <script
-      type="text/babel"
-      src="scripts/main.js"
-      data-presets="react"
-    ></script>
+    <script type="text/javascript" src="scripts/main.js"></script>
+    <script>
+      const select = document.getElementById("size");
+      const speed = document.getElementById("speed");
+
+      select.addEventListener("change", ({ target }) => {
+        GameGrid.setSize(target.value);
+      });
+
+      speed.addEventListener("change", ({ target }) => {
+        GameGrid.setSpeed(target.value);
+      });
+    </script>
   </body>
 </html>

@@ -17,7 +17,7 @@ This provides an overview of the implementation solution for Conway's Game of Li
 
 ### Language Used
 
-For this Challenge we used **React** to implement the solution.
+This solution was implemented using pure javascript **NO FRAMEWORK**
 
 ### Code Structure
 
@@ -28,8 +28,7 @@ For this Challenge we used **React** to implement the solution.
 │   └── img2.png
 ├── index.html     /* HTML entry file */
 └── scripts
-    ├── main.js    /* Implementation in VanillaJS, only using React for JSX rendering */
-    ├── grid.js    /* Another Implementation using fully React */
+    ├── main.js    /* Implementation using VanillaJS */
     └── utils.js   /* Some helper functions */
 ```
 
