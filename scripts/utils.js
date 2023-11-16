@@ -2,8 +2,16 @@ function makeArray(width) {
   return Array(width ** 2).fill(0);
 }
 
+function copyArray(arr) {
+  // deep copy
+  let newArray = arr.map(function (row) {
+    return row.slice();
+  });
+  return newArray;
+}
+
 function nextState(grid, width) {
-  const newGrid = [...grid];
+  const newGrid = copyArray(grid);
   for (let i = 0; i < width; i++) {
     for (let j = 0; j < width; j++) {
       const score = aliveNeighbors(i, j, grid);
@@ -25,7 +33,7 @@ function aliveNeighbors(i, j, grid) {
   alive.push(getElement(i + 1, j, grid));
   alive.push(getElement(i + 1, j + 1, grid));
   alive.push(getElement(i + 1, j - 1, grid));
-  return alive.reduce((a, b) => a + b);
+  return alive.reduce((a, b) => a + b, 0);
 }
 
 function listToMatrix(list, size) {

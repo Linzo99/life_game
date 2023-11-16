@@ -21,7 +21,7 @@ class Grid {
   init() {
     clearInterval(interval);
     const tmp = makeArray(this.size);
-    const fillSize = parseInt(this.size ** 2 * (1 / 6));
+    const fillSize = parseInt(this.size ** 2 * (1 / 4));
     for (let i = 0; i <= fillSize; i++) tmp[i] = 1;
     // suffle
     tmp.sort(() => (Math.random() > 0.5 ? 1 : -1));
@@ -48,10 +48,16 @@ class Grid {
     this.init();
   }
 
+  toggleAlive(i, j) {
+    this.pause();
+    this.grid[i][j] = this.grid[i][j] ^ 1;
+    this.render();
+  }
+
   // setters here
   setSpeed(val) {
-    this.speed = val;
     this.pause();
+    this.speed = val;
     this.start();
   }
 
@@ -64,15 +70,16 @@ class Grid {
     const gridContainer = document.createElement("div");
     gridContainer.className = "flex flex-col";
 
-    this.grid.forEach((row) => {
+    this.grid.forEach((row, i) => {
       const rowDiv = document.createElement("div");
       rowDiv.className = "flex";
 
-      row.forEach((val) => {
+      row.forEach((val, j) => {
         const span = document.createElement("span");
+        span.onclick = () => this.toggleAlive(i, j);
         span.className = `${
           val == 1 ? "bg-green-600 " : ""
-        }w-2 h-2 md:h-4 md:w-4 border-[.2px] border-gray-400/80 m-0 p-0`;
+        }cursor-pointer w-2 h-2 md:h-4 md:w-4 border-[.2px] border-gray-400/80 m-0 p-0`;
         rowDiv.appendChild(span);
       });
       gridContainer.appendChild(rowDiv);

@@ -32,6 +32,15 @@ This solution was implemented using pure javascript **NO FRAMEWORK**
     └── utils.js   /* Some helper functions */
 ```
 
+### Functionalities in this implementation
+
+- **Play:** Click the play icon (green) to start
+- **Pause:** Click the pause icon (red) to pause
+- **Reinitialize:** Click the reinitialize icon (yellow) to reinitialize the board
+- **Change Speed:** You can change the speed using the slider (blue)
+- **Change Size:** You can change the board size using the select
+- **Toggle Cell:** Clicking into a cell will toggle that cell life (alive/dead) after each toggle the game will Pause
+
 ### Rules of Conway's Game of Life
 
 The following are the basic rules that govern the evolution of the system:
